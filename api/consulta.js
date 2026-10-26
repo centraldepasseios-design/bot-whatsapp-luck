@@ -54,6 +54,6 @@ module.exports = async function handler(req, res) {
     const resposta = await consultarReserva(numero, process.env.PHOENIX_EMAIL, process.env.PHOENIX_PASSWORD);
     await responder(phone, resposta);
   } catch (e) {
-    try { await responder(body.phone, "Tive um erro ao consultar. Tente de novo."); } catch {}
+    try { await responder(body.phone, "⚠️ Erro: " + (e && e.message ? e.message : String(e))); } catch {}
   }
 };
